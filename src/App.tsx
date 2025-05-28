@@ -28,7 +28,7 @@ import {
   BlogPostEdit,
   BlogPostList,
   BlogPostShow,
-} from "./pages/blog-posts";
+} from "./pages/blog-posts"; 
 import {
   CategoryCreate,
   CategoryEdit,
@@ -54,7 +54,7 @@ function App() {
                 authProvider={authProvider}
                 resources={[
                   {
-                    name: "blog_posts", 'hiii'
+                    name: "blog_posts",  
                     list: "/blog-posts",
                     create: "/blog-posts/create",
                     edit: "/blog-posts/edit/:id",
