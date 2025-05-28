@@ -10,10 +10,10 @@ import {
 } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import dataProvider, {
-  GraphQLClient,
-  liveProvider,
-} from "@refinedev/nestjs-query";
+import { authProvider, dataProvider, liveProvider } from "./provider";
+
+
+
 import routerBindings, {
   CatchAllNavigate,
   DocumentTitleHandler,
@@ -23,9 +23,6 @@ import routerBindings, {
 import { App as AntdApp } from "antd";
 import { createClient } from "graphql-ws";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
-import { authProvider } from "./authProvider";
-import { Header } from "./components/header";
-import { ColorModeContextProvider } from "./contexts/color-mode";
 import {
   BlogPostCreate,
   BlogPostEdit,
@@ -40,31 +37,24 @@ import {
 } from "./pages/categories";
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
-import { Register } from "./pages/register";
-
-const API_URL = "https://api.nestjs-query.refine.dev/graphql";
-const WS_URL = "wss://api.nestjs-query.refine.dev/graphql";
-
-const gqlClient = new GraphQLClient(API_URL);
-const wsClient = createClient({ url: WS_URL });
+import { Register } from "./pages/register"; 
 
 function App() {
   return (
     <BrowserRouter>
       <GitHubBanner />
       <RefineKbarProvider>
-        <ColorModeContextProvider>
           <AntdApp>
             <DevtoolsProvider>
               <Refine
-                dataProvider={dataProvider(gqlClient)}
-                liveProvider={liveProvider(wsClient)}
+                dataProvider={dataProvider}
+                liveProvider={liveProvider}
                 notificationProvider={useNotificationProvider}
                 routerProvider={routerBindings}
                 authProvider={authProvider}
                 resources={[
                   {
-                    name: "blog_posts",
+                    name: "blog_posts", 'hiii'
                     list: "/blog-posts",
                     create: "/blog-posts/create",
                     edit: "/blog-posts/edit/:id",
@@ -100,7 +90,7 @@ function App() {
                         fallback={<CatchAllNavigate to="/login" />}
                       >
                         <ThemedLayoutV2
-                          Header={Header}
+                          //Header={Header}
                           Sider={(props) => <ThemedSiderV2 {...props} fixed />}
                         >
                           <Outlet />
@@ -152,7 +142,6 @@ function App() {
               <DevtoolsPanel />
             </DevtoolsProvider>
           </AntdApp>
-        </ColorModeContextProvider>
       </RefineKbarProvider>
     </BrowserRouter>
   );
