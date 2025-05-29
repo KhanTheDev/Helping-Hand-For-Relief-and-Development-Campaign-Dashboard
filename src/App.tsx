@@ -1,4 +1,4 @@
-import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
@@ -11,7 +11,7 @@ import {
 import "@refinedev/antd/dist/reset.css";
 
 import { authProvider, dataProvider, liveProvider } from "./provider";
-
+import {Home, ForgotPassword, Login, Register} from "./pages";
 
 
 import routerBindings, {
@@ -83,7 +83,11 @@ function App() {
                 }}
               >
                 <Routes>
-                  <Route
+                  <Route index element = { <WelcomePage />} />
+                  <Route index element={<Home />} />
+                  <Route path = "/register" element = {<Register />} />
+                  <Route path = "/login" element={<Login />} />
+                  <Route path = "/forgot-password" element={<ForgotPassword />} />
                     element={
                       <Authenticated
                         key="authenticated-inner"
@@ -97,7 +101,7 @@ function App() {
                         </ThemedLayoutV2>
                       </Authenticated>
                     }
-                  >
+
                     <Route
                       index
                       element={<NavigateToResource resource="blog_posts" />}
