@@ -6,7 +6,6 @@ import {
 } from "@refinedev/core";
 import {
   ErrorComponent,
-  ThemedLayoutV2,
   ThemedSiderV2,
   useNotificationProvider,
 } from "@refinedev/antd";
@@ -41,6 +40,7 @@ import { Home } from "./pages";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import { ForgotPassword } from "./pages/forgotPassword";
+import Layout from "./components/layout";
 
 import {
   CatchAllNavigate,
@@ -98,11 +98,9 @@ function App() {
                       key="authenticated-layout"
                       fallback={<CatchAllNavigate to="/login" />}
                     >
-                      <ThemedLayoutV2
-                        Sider={(props) => <ThemedSiderV2 {...props} fixed />}
-                      >
+                      <Layout>
                         <Outlet />
-                      </ThemedLayoutV2>
+                      </Layout>
                     </Authenticated>
                   }
                 >
