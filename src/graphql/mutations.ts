@@ -2,10 +2,7 @@ import gql from "graphql-tag";
 
 // Mutation to update user
 export const UPDATE_USER_MUTATION = gql`
-  # The ! after the type means that it is required
   mutation UpdateUser($input: UpdateOneUserInput!) {
-    # call the updateOneUser mutation with the input and pass the $input argument
-    # $variableName is a convention for GraphQL variables
     updateOneUser(input: $input) {
       id
       name
@@ -56,6 +53,11 @@ export const UPDATE_TASK_STAGE_MUTATION = gql`
   mutation UpdateTaskStage($input: UpdateOneTaskInput!) {
     updateOneTask(input: $input) {
       id
+      title
+      stage {
+        id
+        title
+      }
     }
   }
 `;
@@ -66,23 +68,9 @@ export const CREATE_TASK_MUTATION = gql`
     createOneTask(input: $input) {
       id
       title
-      stage {
-        id
-        title
-      }
-    }
-  }
-`;
-
-// Mutation to update a task details
-export const UPDATE_TASK_MUTATION = gql`
-  mutation UpdateTask($input: UpdateOneTaskInput!) {
-    updateOneTask(input: $input) {
-      id
-      title
-      completed
       description
       dueDate
+      completed
       stage {
         id
         title
@@ -98,4 +86,4 @@ export const UPDATE_TASK_MUTATION = gql`
       }
     }
   }
-`;
+`; 
