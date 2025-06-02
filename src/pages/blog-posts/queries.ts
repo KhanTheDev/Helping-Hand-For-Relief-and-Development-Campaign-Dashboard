@@ -1,55 +1,51 @@
 import gql from "graphql-tag";
 
 export const POST_CREATE_MUTATION = gql`
-  mutation PostCreate($input: CreateOneBlogPostInput!) {
-    createOneBlogPost(input: $input) {
+  mutation CreateTask($input: CreateOneTaskInput!) {
+    createOneTask(input: $input) {
       id
       title
-      status
-      categoryId
-      category {
-        id
-        title
-      }
-      content
+      description
+      dueDate
+      completed
+      stageId
+      createdAt
+      updatedAt
     }
   }
 `;
 
 export const POST_EDIT_MUTATION = gql`
-  mutation PostEdit($input: UpdateOneBlogPostInput!) {
-    updateOneBlogPost(input: $input) {
+  mutation UpdateTask($input: UpdateOneTaskInput!) {
+    updateOneTask(input: $input) {
       id
       title
-      status
-      categoryId
-      category {
-        id
-        title
-      }
-      content
+      description
+      dueDate
+      completed
+      stageId
+      createdAt
+      updatedAt
     }
   }
 `;
 
 export const POSTS_LIST_QUERY = gql`
-  query BlogPostsList(
+  query TasksList(
     $paging: OffsetPaging!
-    $filter: BlogPostFilter
-    $sorting: [BlogPostSort!]!
+    $filter: TaskFilter
+    $sorting: [TaskSort!]!
   ) {
-    blogPosts(paging: $paging, filter: $filter, sorting: $sorting) {
+    tasks(paging: $paging, filter: $filter, sorting: $sorting) {
       nodes {
         id
         title
-        categoryId
-        category {
-          id
-          title
-        }
-        status
-        content
+        description
+        dueDate
+        completed
+        stageId
         createdAt
+        updatedAt
       }
       totalCount
     }
@@ -57,25 +53,23 @@ export const POSTS_LIST_QUERY = gql`
 `;
 
 export const POST_SHOW_QUERY = gql`
-  query PostShow($id: ID!) {
-    blogPost(id: $id) {
+  query TaskShow($id: ID!) {
+    task(id: $id) {
       id
       title
-      status
-      categoryId
-      category {
-        id
-        title
-      }
-      content
+      description
+      dueDate
+      completed
+      stageId
       createdAt
+      updatedAt
     }
   }
 `;
 
 export const CATEGORIES_SELECT_QUERY = gql`
-  query CategoriesSelect($filter: CategoryFilter!) {
-    categories(filter: $filter) {
+  query TaskStagesSelect($filter: TaskStageFilter!) {
+    taskStages(filter: $filter) {
       nodes {
         id
         title

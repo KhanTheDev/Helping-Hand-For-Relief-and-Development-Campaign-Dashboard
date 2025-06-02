@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export const CATEGORY_CREATE_MUTATION = gql`
-  mutation CategoryCreate($input: CreateOneCategoryInput!) {
-    createOneCategory(input: $input) {
+  mutation TaskStageCreate($input: CreateOneTaskStageInput!) {
+    createOneTaskStage(input: $input) {
       id
       title
     }
@@ -10,8 +10,8 @@ export const CATEGORY_CREATE_MUTATION = gql`
 `;
 
 export const CATEGORY_EDIT_MUTATION = gql`
-  mutation CategoryEdit($input: UpdateOneCategoryInput!) {
-    updateOneCategory(input: $input) {
+  mutation TaskStageEdit($input: UpdateOneTaskStageInput!) {
+    updateOneTaskStage(input: $input) {
       id
       title
     }
@@ -19,12 +19,12 @@ export const CATEGORY_EDIT_MUTATION = gql`
 `;
 
 export const CATEGORIES_LIST_QUERY = gql`
-  query CategoriesList(
+  query TaskStagesList(
     $paging: OffsetPaging!
-    $filter: CategoryFilter
-    $sorting: [CategorySort!]!
+    $filter: TaskStageFilter
+    $sorting: [TaskStageSort!]!
   ) {
-    categories(paging: $paging, filter: $filter, sorting: $sorting) {
+    taskStages(paging: $paging, filter: $filter, sorting: $sorting) {
       nodes {
         id
         title
@@ -34,9 +34,10 @@ export const CATEGORIES_LIST_QUERY = gql`
     }
   }
 `;
+
 export const CATEGORY_SHOW_QUERY = gql`
-  query CategoryShow($id: ID!) {
-    category(id: $id) {
+  query TaskStageShow($id: ID!) {
+    taskStage(id: $id) {
       id
       title
       createdAt
